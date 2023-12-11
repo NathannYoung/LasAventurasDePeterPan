@@ -7,7 +7,7 @@ class Juego {
     this.cantidadDeEnemigos = 11;
     this.fondoMovimiento = true;
     for (let i = 0; i < this.cantidadDeEnemigos; i++) {
-      const tamañoEnemigo = window.innerWidth < 700 ? 30 : 50; // Ajusta el tamaño del enemigo según el ancho de la pantalla
+      const tamañoEnemigo = window.innerWidth < 700 ? 30 : 50; 
       this.enemigos[i] = new Enemigo(random(-width / 2, width), random(height + 50, height + 100), tamañoEnemigo, this);
     }
     this.fondoY = 0;
@@ -17,6 +17,8 @@ class Juego {
     this.personajeCayendo = false;
     this.botonIzquierdo = new Boton(200, windowHeight - 75, "Izquierda");
     this.botonDerecho = new Boton(width - 200, windowHeight - 75, "Derecha");
+    this.botonIzquierdo.alto *= 2;
+    this.botonDerecho.alto *= 2;
   }
 
   dibujarBotones() {
@@ -139,3 +141,4 @@ class Juego {
     }
   }
 }
+
