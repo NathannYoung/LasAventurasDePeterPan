@@ -1,12 +1,11 @@
-
-
 class Boton {
   constructor(x, y, texto) {
     this.x = x;
     this.y = y;
     this.texto = texto;
     this.ancho = 150;
-    this.alto = 30;
+    this.alto = 45;
+   
   }
 
   dibujar() {
@@ -51,6 +50,12 @@ class BotonJuegoComenzar extends Boton {
 }
 
 class BotonIzquierda extends Boton {
+  constructor(x, y, texto) {
+    super(x, y, texto);
+  }
+}
+
+class BotonDerecha extends Boton {
   constructor(x, y, texto) {
     super(x, y, texto);
   }
