@@ -17,7 +17,7 @@ class App {
 
     if (this.pantallaActual === 0) {
       const xInicio = width / 2;
-      const yInicio = windowHeight - 75;
+      const yInicio = windowHeight - 85;
       this.botonInicio = new BotonInicio(xInicio, yInicio, "Iniciar");
       this.botones.push(this.botonInicio);
     }
@@ -31,9 +31,9 @@ class App {
       this.pantallaActual !== 12
     ) {
       const xAtras = 100;
-      const yAtras = windowHeight - 75;
+      const yAtras = windowHeight - 85;
       const xSiguiente = windowWidth - 100;
-      const ySiguiente = windowHeight - 75;
+      const ySiguiente = windowHeight - 85;
 
       this.botonAtras = new Boton(xAtras, yAtras, "Atrás");
       this.botonSiguiente = new Boton(xSiguiente, ySiguiente, "Siguiente");
@@ -44,14 +44,14 @@ class App {
 
     if (this.pantallaActual === 11 || this.pantallaActual === 12) {
       const xInicio = width / 2;
-      const yInicio = windowHeight - 75;
+      const yInicio = windowHeight - 85;
       this.BotonReinicio = new BotonReinicio(xInicio, yInicio, "Reiniciar");
       this.botones.push(this.BotonReinicio);
     }
 
     if (this.pantallaActual === 5) {
       const xInicio = width / 2;
-      const yInicio = windowHeight - 75;
+      const yInicio = windowHeight - 85;
       this.BotonJuegoComenzar = new BotonJuegoComenzar(xInicio, yInicio, "Comenzar");
       this.botones.push(this.BotonJuegoComenzar);
     }
