@@ -6,12 +6,9 @@ class App {
     this.pantallaActual = 0;
     this.relatoManager = new RelatoManager();
     this.juego = new Juego();
-    this.cambioPantallaRealizado = false; // Variable para controlar el cambio de pantalla
-
     for (let i = 0; i <= 12; i++) {
       this.imagenes[i] = loadImage("assets/imagenes/" + i + ".jpg");
     }
-
     this.actualizarBotones();
   }
 
@@ -81,7 +78,7 @@ class App {
       }
     }
 
-    if (this.juegoActivo) {
+    if (this.juegoActivo) { // Verificar si el juego está activo
       if (this.juego && this.juego.estado === "Ganaste") {
         this.pantallaActual = 7;
         this.actualizarBotones();
@@ -116,87 +113,80 @@ class App {
       this.juego.mouseLiberado();
     }
 
-    // Verifica si ya se realizó el cambio de pantalla en este clic
-    if (!this.cambioPantallaRealizado) {
-      for (let i = 0; i < this.botones.length; i++) {
-        if (this.botones[i].clicEnBoton()) {
-          if (this.botones[i] instanceof Boton && this.pantallaActual === 0) {
-            this.pantallaActual = 1;
-          } else if (
-            this.pantallaActual === 5 &&
-            this.botones[i] instanceof BotonJuegoComenzar
-          ) {
-            if (this.botones[i].clicEnBoton()) {
-              this.pantallaActual = 6;
-              this.juego.iniciar();
-              this.juegoActivo = true;
-            }
-          } else if (
-            this.botones[i] instanceof Boton &&
-            this.pantallaActual >= 1 &&
-            this.pantallaActual <= 4
-          ) {
-            if (i === 0) {
-              this.pantallaActual = max(0, this.pantallaActual - 1);
-            } else if (i === 1) {
-              this.pantallaActual = min(5, this.pantallaActual + 1);
-            }
-          } else if (this.pantallaActual === 7 && this.botones[i] instanceof Boton) {
-            if (i === 0) {
-              this.pantallaActual = 5;
-              this.juego = new Juego();
-            } else if (i === 1) {
-              this.pantallaActual = 9;
-            }
-          } else if (this.pantallaActual === 8 && this.botones[i] instanceof Boton) {
-            if (i === 0) {
-              this.pantallaActual = 5;
-              this.juego = new Juego();
-            } else if (i === 1) {
-              this.pantallaActual = 10;
-            }
-          } else if (this.pantallaActual === 10 && this.botones[i] instanceof Boton) {
-            if (i === 0) {
-              this.pantallaActual = 8;
-            } else if (i === 1) {
-              this.pantallaActual = 12;
-            }
-          } else if (this.pantallaActual === 12 && this.botones[i] instanceof Boton) {
-            if (i === 0) {
-              this.pantallaActual = 0;
-              this.juego = new Juego();
-            }
-          } else if (this.pantallaActual === 9 && this.botones[i] instanceof Boton) {
-            if (i === 0) {
-              this.pantallaActual = 7;
-            } else if (i === 1) {
-              this.pantallaActual = 11;
-            }
-          } else if (this.pantallaActual === 11 && this.botones[i] instanceof Boton) {
-            if (i === 0) {
-              this.pantallaActual = 0;
-              this.juego = new Juego();
-            }
+    for (let i = 0; i < this.botones.length; i++) {
+      if (this.botones[i].clicEnBoton()) {
+        if (this.botones[i] instanceof Boton && this.pantallaActual === 0) {
+          this.pantallaActual = 1;
+        } else if (
+          this.pantallaActual === 5 &&
+          this.botones[i] instanceof BotonJuegoComenzar
+        ) {
+          if (this.botones[i].clicEnBoton()) {
+            this.pantallaActual = 6;
+            this.juego.iniciar();
+            this.juegoActivo = true;
           }
-
-          if (this.juego && this.juego.estado === "Ganaste") {
-            this.pantallaActual = 7;
-            this.actualizarBotones();
-            this.juego = null;
-          } else if (this.juego && this.juego.estado === "Perdiste") {
+        } else if (
+          this.botones[i] instanceof Boton &&
+          this.pantallaActual >= 1 &&
+          this.pantallaActual <= 4
+        ) {
+          if (i === 0) {
+            this.pantallaActual = max(0, this.pantallaActual - 1);
+          } else if (i === 1) {
+            this.pantallaActual = min(5, this.pantallaActual + 1);
+          }
+        } else if (this.pantallaActual === 7 && this.botones[i] instanceof Boton) {
+          if (i === 0) {
+            this.pantallaActual = 5;
+            this.juego = new Juego();
+          } else if (i === 1) {
+            this.pantallaActual = 9;
+          }
+        } else if (this.pantallaActual === 8 && this.botones[i] instanceof Boton) {
+          if (i === 0) {
+            this.pantallaActual = 5;
+            this.juego = new Juego();
+          } else if (i === 1) {
+            this.pantallaActual = 10;
+          }
+        } else if (this.pantallaActual === 10 && this.botones[i] instanceof Boton) {
+          if (i === 0) {
             this.pantallaActual = 8;
-            this.actualizarBotones();
-            this.juego = null;
-          } else {
-            this.actualizarBotones();
-            this.relatoManager.frameContador = 0;
+          } else if (i === 1) {
+            this.pantallaActual = 12;
           }
+        } else if (this.pantallaActual === 12 && this.botones[i] instanceof Boton) {
+          if (i === 0) {
+            this.pantallaActual = 0;
+            this.juego = new Juego();
+          }
+        } else if (this.pantallaActual === 9 && this.botones[i] instanceof Boton) {
+          if (i === 0) {
+            this.pantallaActual = 7;
+          } else if (i === 1) {
+            this.pantallaActual = 11;
+          }
+        } else if (this.pantallaActual === 11 && this.botones[i] instanceof Boton) {
+          if (i === 0) {
+            this.pantallaActual = 0;
+            this.juego = new Juego();
+          }
+        }
 
-          // Marca que el cambio de pantalla ya se realizó
-          this.cambioPantallaRealizado = true;
+        if (this.juego && this.juego.estado === "Ganaste") {
+          this.pantallaActual = 7;
+          this.actualizarBotones();
+          this.juego = null;
+        } else if (this.juego && this.juego.estado === "Perdiste") {
+          this.pantallaActual = 8;
+          this.actualizarBotones();
+          this.juego = null;
+        } else {
+          this.actualizarBotones();
+          this.relatoManager.frameContador = 0;
         }
       }
     }
   }
-                                             }
-      
+  }
